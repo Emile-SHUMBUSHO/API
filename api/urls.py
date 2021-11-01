@@ -3,11 +3,11 @@ from . import views
 
 urlpatterns = [
     path('', views.getRoutes),
-    path('notes/', views.getNotes),
-    path('notes/create/', views.createNote),
-    path('notes/<str:pk>/update/', views.updateNote),
-    path('notes/<str:pk>/delete/', views.deleteNote),
-    path('notes/<str:pk>/', views.getNote),
+    path('recipe/', views.getRecipes),
+    path('recipe/create/', views.creatRecipe),
+    path('recipe/<str:pk>/update/', views.updateRecipe),
+    path('recipe/<str:pk>/delete/', views.deleteRecipe),
+    path('recipe/<str:pk>/', views.getRecipe),
 
 
 ]

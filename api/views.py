@@ -1,38 +1,38 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import NoteSerializer
-from .models import Note
+from .serializers import RecipeSerializer
+from .models import Recipe
 
 
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
         {
-            'Endpoint': '/notes/',
+            'Endpoint': '/Recipe/',
             'method': 'GET',
             'body': None,
             'description': 'returns array of notes'
         },
         {
-            'Endpoint': '/notes/id',
+            'Endpoint': '/Recipe/id',
             'method': 'GET',
             'body': None,
             'description': 'Returns a single note object'
         },
         {
-            'Endpoint': '/notes/create/',
+            'Endpoint': '/Recipe/create/',
             'method': 'POST',
             'body': {'body': ""},
             'description': 'Create new note with data sent in post request'
         },
         {
-            'Endpoint': '/notes/id/update/',
+            'Endpoint': '/Recipe/id/update/',
             'method': 'PUT',
             'body': {'body': ""},
             'description': 'Creates an existing note with data sent in request'
         },
         {
-            'Endpoint': '/notes/id/delete/',
+            'Endpoint': '/Recipe/id/delete/',
             'method': 'DELETE',
             'body': None,
             'description': 'Creates an existing note with data sent in request'
@@ -42,34 +42,38 @@ def getRoutes(request):
 
 
 @api_view(['GET'])
-def getNotes(request):
-    notes = Note.objects.all()
-    serializer = NoteSerializer(notes, many=True)
+def getRecipes(request):
+    recipe = Recipe.objects.all()
+    serializer = RecipeSerializer(recipe, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def getNote(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False)
+def getRecipe(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+    serializer = RecipeSerializer(recipe, many=False)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def createNote(request):
+def creatRecipe(request):
     data = request.data
-    note = Note.objects.create(
-        body = data['body']
+    recipe = Recipe.objects.create(
+        recipe=data['recipe'],
+        country=data['country'],
+        image=data['image'],
+        description=data['description']
     )
-    serializer = NoteSerializer(note, many=False)
+    serializer = RecipeSerializer(recipe, many=False)
     return Response(serializer.data)
 
+
 @api_view(['PUT'])
-def updateNote(request, pk):
+def updateRecipe(request, pk):
     data = request.data
 
-    note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(note, data=request.data)
+    recipe = Recipe.objects.get(id=pk)
+    serializer = RecipeSerializer(recipe, data=request.data)
     if serializer.is_valid():
         serializer.save()
 
@@ -77,7 +81,7 @@ def updateNote(request, pk):
 
 
 @api_view(['DELETE'])
-def deleteNote(request, pk):
-    note = Note.objects.get(id=pk)
-    note.delete()
-    return Response("Note was deleted")
+def deleteRecipe(request, pk):
+    recipe = Recipe.objects.get(id=pk)
+    recipe.delete()
+    return Response("recipe was deleted")

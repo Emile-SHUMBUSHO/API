@@ -81,12 +81,35 @@ WSGI_APPLICATION = 'notes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'recipe',
+#         'USER': 'postgres',
+#         'PASSWORD': 'remember2018',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd5bmkpf24ab8h2',
+        'USER': 'jxpqbhjpccnsrd',
+        'PASSWORD': '330cb23c5fd079b745b92397d9f519719ba43a5d1fd84adf733a6db46633e915',
+        'HOST': 'ec2-3-218-149-60.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
+
 
 
 # Password validation
