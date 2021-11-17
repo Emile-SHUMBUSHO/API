@@ -4,7 +4,7 @@ from django.db import models
 class Recipe(models.Model):
     recipe = models.TextField(max_length=100)
     country = models.TextField(max_length=100)
-    image = models.ImageField(default="profile.jpg", null=True, blank=True)
+    image = models.TextField(max_length=1000)
     description = models.TextField(max_length=1000)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now=True)
