@@ -71,7 +71,6 @@ def creatRecipe(request):
 @api_view(['PUT'])
 def updateRecipe(request, pk):
     data = request.data
-
     recipe = Recipe.objects.get(id=pk)
     serializer = RecipeSerializer(recipe, data=request.data)
     if serializer.is_valid():
